@@ -843,6 +843,9 @@ pub fn RenderEngineType(
                         .interpolation => |path| try self.interpolate(path, .escaped),
                         .unescaped_interpolation => |path| try self.interpolate(path, .unescaped),
                         .section => |section| {
+                            if (index + section.children_count > elements.len)
+                                continue;
+
                             const section_children = elements[index .. index + section.children_count];
                             index += section.children_count;
 
@@ -1185,6 +1188,9 @@ pub fn RenderEngineType(
                         .static_text => |content| size += content.len,
                         .interpolation, .unescaped_interpolation => |path| size += self.pathCapacityHint(path),
                         .section => |section| {
+                            if (index + section.children_count > elements.len)
+                                continue;
+
                             const section_children = elements[index .. index + section.children_count];
                             index += section.children_count;
 

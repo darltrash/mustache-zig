@@ -3062,6 +3062,15 @@ const tests = struct {
                 try expectRender(template_text, data, expected);
             }
 
+            test "Empty node in section" {
+                const template_text = "{{#section}} {{node}}{{/section}}";
+                const expected = "false";
+
+                const Data = struct { section: bool, node: bool };
+                const data = Data{ .section = true, .node = false };
+                try expectRender(template_text, &data, expected);
+            }
+
             // Delimiters set outside inverted sections should persist.
             test "Inverted Sections" {
                 const template_text =

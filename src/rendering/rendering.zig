@@ -823,10 +823,10 @@ pub fn RenderEngineType(
             inline fn preserveLineBreaksAndIndentation(self: DataRender) bool {
                 return !PartialsMap.isEmpty() and
                     switch (options) {
-                    .template => self.template_options.features.preserve_line_breaks_and_indentation,
-                    .string => |string| string.features.preserve_line_breaks_and_indentation,
-                    .file => |file| file.features.preserve_line_breaks_and_indentation,
-                };
+                        .template => self.template_options.features.preserve_line_breaks_and_indentation,
+                        .string => |string| string.features.preserve_line_breaks_and_indentation,
+                        .file => |file| file.features.preserve_line_breaks_and_indentation,
+                    };
             }
 
             fn renderLevel(
